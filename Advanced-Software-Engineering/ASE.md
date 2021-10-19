@@ -78,10 +78,7 @@ Design for failure means that a system will never fail. In a system designed for
 
 The design for failure can be tested with fault-injection testing.
 
-# OLD
-## Core interoperability standards (REST, SOAP/ WS-\*, WSDL)
-
-### NOTES
+## REST, SOAP/ WS-\*, WSDL
 
 REST Principles
 
@@ -89,15 +86,6 @@ REST Principles
 - Fixed set of operations: GET, PUT, POST, DELETE (PUT is idempotent, POST is not [RFC 2616])
 - Resources decoupled from their representation: HTML, XML, JSON, plain text, PDF, JPEG…
 - Stateful thanks to explicit state transfer (through hyperlinks), using a stateless communication (HTTP)
-
-REST vs SOAP:
-
-- REST is resource-centric, SOAP is message-centric
-- REST is easy, SOAP is complex
-- REST is basic, SOAP advanced
-- REST is for web environments, SOAP to access objects on servers (professional/enterprise environment)
-- REST navigation through hyperlinks, in SOAP there are formal contracts about objects information
-- REST works also on very limited bandwidth conditions, SOAP can be used for transactions that involves multiple calls
 
 ### What is REST?
 
@@ -114,7 +102,7 @@ The access to resources is made with a GET request. The DELETE update a resource
 PROS
 
 -Easy to use: well-known standards (HTTP, XML, URI)
-- No additional overhead: deploying similar to dynamic website, no client-side additional software needed
+- No additional overhead: deploying similar to dynamic website, no client-side additional software needed.
 - Predictable endpoints, hyperlinks navigation
 - Efficiency: lightweight protocol and message formats
 - Scalability (stateless)
@@ -133,6 +121,45 @@ Simple Object Access Protocol: is a messaging protocol specification for exchang
 ### How are SOAP messages transported?
 
 SOAP messages are based on XML and transported over HTTP. The SOAP envelope consists in an optional header with control information, and a body with the payload.
+
+### REST vs SOAP
+
+- REST is resource-centric, SOAP is message-centric
+- REST is easy, SOAP is complex
+- REST is basic, SOAP advanced
+- REST is for web environments, SOAP to access objects on servers (professional/enterprise environment)
+- REST navigation through hyperlinks, in SOAP there are formal contracts about objects information
+- REST works also on very limited bandwidth conditions, SOAP can be used for transactions that involves multiple calls
+- REST does not have the complexity of the layers of the WS-\* stack.
+- Not easy to exend a RESTful Web service to support advanced functionalities in an interoperable manner.
+- Various decisions that are very easy to make fo RESTful services may lead to significant development efforts and technical risks.
+- If the enterprise-level features of WS-\* (transactions, reliability, message-level security) are not required, REST can provide better flexibility and control, but requires a lot of low-level coding but WS-\* provides better tool support and programming interface convenience.
+
+In the end, REST is convenient to get (simple) services running and fro tactical, ad hoc integration over the Web (e.g mashups). WS-\* is preferable for professional enterprise application integration scenarios with longer lifespan and advanced QoS requirements.
+
+#### Guidelines for REST
+
+It's better to use REST when:
+
+- Clients and servers operate on a Web enviroment.
+- Information about objects doesn't need to be communicated to the client.
+
+It's better not to use REST when:
+
+- We need to enforce a strict contract between client and server.
+- We need to perform transactions that involve multiple calls.
+
+#### Guidelines for WS-\*
+
+It's better to use WS-\* when:
+
+- Clients need to have acces to objects available on servers.
+- We want to enforce a formal contract between client and server.
+
+It's better not to use WS-\* when:
+
+- We want the majority of developer to easely use our APIr.
+- Our bandwidth is very limited.
 
 ### What is WSDL?
 
@@ -190,7 +217,7 @@ The concrete interface specifies the implementation of the abstract interface an
 - one-way (input-only operations, asynchronous), the client sends data to the server without requiring a response;
 - notification (output-only operations, asynchronous), the server sends data to the client without a request before and doesn't wait a response.
 
-
+# OLD
 ### What is Git/GitHub?
 
 Git is the widely used version control protocol, and GitHub the most popular service that implements git.
