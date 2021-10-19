@@ -1,5 +1,4 @@
 # Advanced Software Engineering
-_Answered questions & Notes_
 
 Teacher: prof. Antonio Brogi  
 Accademic Year: 2020/21
@@ -9,8 +8,6 @@ Accademic Year: 2020/21
 **Check out also the summaries: [short](summaries/ASE_summaries_1819_original.pdf) and [extended](summaries/ASE_summaries_1819_extended.pdf).**
 
 ## Microservices
-
-### Which are the main characteristics of microservice-based architectures?
 
 First, let us introduce a view of a typical enterprise application.
 
@@ -43,7 +40,7 @@ with agile, these way of thinking was rearranged in the sense that teams, now, a
 
 ![design for failure](img/deignFailure.png)
 
-### Netflix API (2012)
+### **Netflix API (2012)**
 
 - recieved more than 1 bilion incoming calls per day.
 - several billion outgoings calls (averaging a ratio of 1:6) to dozens of underlying subsistemswith peaks of over 100k dependency request per second.
@@ -60,19 +57,19 @@ The solution to this whas found in the so-called **caos-monkey** wich is a progr
 
 In the end the only motive which should push su in to microservices its only if our application is too complex to manage in a monolith.
 
-### What are "squads" and "tribes" at Spotify?
+### **What are "squads" and "tribes" at Spotify?**
 
 Squads are similar to scrum teams, consists of 6-12 people and are dedicated to work on one feature area. A squad is autonomous, self-organizing and self-managing and has an Agile Coach. Each squad has a mission to accomplish and is free to choose an agile methodology.
 
 Multiple squads that work on the related feature area makes a tribe. A tribe may consist of 40-150 people and has a tribe lead responsible for creating a productive and an innovative environment.
 
-### What is fault-injection testing?
+### **What is fault-injection testing?**
 
 Fault injection is a software testing technique by introducing faults into the code for improving the coverage and usually used with stress testing.
 
 Usually the fault-injection testing tests the robustness of a software or a component on strange input data.
 
-### How can &quot;design for failure&quot; be actually implemented?
+### **How can &quot;design for failure&quot; be actually implemented?**
 
 Design for failure means that a system will never fail. In a system designed for failure every functions and component are ready to work also with unexpected data, i.e. wrong and strange inputs.
 
@@ -80,49 +77,82 @@ The design for failure can be tested with fault-injection testing.
 
 ## REST, SOAP/ WS-\*, WSDL
 
-REST Principles
-
-- Resource identification through URIs
-- Fixed set of operations: GET, PUT, POST, DELETE (PUT is idempotent, POST is not [RFC 2616])
-- Resources decoupled from their representation: HTML, XML, JSON, plain text, PDF, JPEG…
-- Stateful thanks to explicit state transfer (through hyperlinks), using a stateless communication (HTTP)
-
-### What is REST?
+### **What is REST?**
 
 REpresentational State Transfer: is an architectural style that defines a set of constraints to be used for creating web services. It is built directly on HTTP and provide four interaction method: GET to retrieve information, PUT to create objects, POST to update it, and DELETE to delete it. There is also a Lo-REST protocol that supports only GET and POST and uses the X-HTTP-Method-Override header to set if the POST request is really a POST or is a PUT or a DELETE request.
 
-### How can we create/update/access resources in REST?
+### **REST Principles**
+
+- **Resource identification through URIs:** The service exposes a set of resources which identify the targets of the interaction with its clients and the resources are identified by URIs, which define global addressing space for resource & service discovery.
+- **Fixed set of operations:** GET ( to retrieve current state of a resource), DELETE (to delete a resource), PUT and POST ( to create and update state of resource; PUT is idempotent and POST is not [RFC 2616])
+- **Self-descriptive messages:** Requests contain enough context information to process the message. In particular,  resources are decoupled from their representation so that their content can be accessed in a variety of formats (e.g., HTML, XML, JSON, plain text, PDF, JPEG, etc.) and the metadata about the resource can be used to control caching or to negotiate representation format.
+- **Stateful interactions through hyperlinks:**  Every interaction with a resource is stateless. In particular,  server contains no client state, any session state is held on the client and stateful interactions rely on the concept of explicit state transfer (through hyperlinks), using a stateless communication (HTTP)
+
+![Example REST](img/ExampleREST.png)
+
+### **How can we create/update/access resources in REST?**
 
 Resources are created with the PUT HTTP method and updated with the POST one. The real difference between PUT and POST is that the PUT is idempotent, and the POST is not (RFC 2616). That means that multiple PUT requests have the same result that the last PUT request will have, instead multiple POST request has a cumulative result.
 
 The access to resources is made with a GET request. The DELETE update a resource deleting it.
 
-### Which are the pros and cons of REST?
+### **Which are the pros and cons of REST?**
 
 PROS
 
--Easy to use: well-known standards (HTTP, XML, URI)
-- No additional overhead: deploying similar to dynamic website, no client-side additional software needed.
-- Predictable endpoints, hyperlinks navigation
-- Efficiency: lightweight protocol and message formats
-- Scalability (stateless)
-- Easier and less complex than SOAP
+- **Easy to use:** well-known standards (HTTP, XML, URI) because the necessary infrastructure has already become pervasive.
+- **No additional overhead:** deploying similar to dynamic website, the effort required to build a client to a RESTful service is small because  developers can begin testing service from ordinary Web browser and there's  no need to develop custom client-side software. Thanks to URIs and hyperlinks, it is possible to discover Web resources without compulsory registration to a repository.
+- **Predictable endpoints, hyperlinks navigation**
+- **Efficiency:** lightweight protocol and message formats
+- **Scalability** (stateless)
+- **Easier and less complex than SOAP**
 
 CONS
 
-- Confusion between Hi-REST and Lo-REST (only GET for idempotent requests and POST for everything else, real verb sent using X-HTTP-Method-Override header)
-- Encode complex data structure into an URL is difficult (Error 414: Request-URI too long)
-- Not easy to be extended
+- **Confusion on what are the best practices for building RESTfulWeb services:** Hi-REST recommends the use of 4 verbs (GET, POST, PUT, DELETE) meanwhile  as proxies and firewalls may not always allow HTTP connections with other verbs than GET and POST, Lo-REST uses only GET for idempotent requests, and POST for everything else (with “real” verb sent with X-HTTP-Method-Override
+header or hidden form field)
 
-### What is SOAP?
+- **Encoding complex data structures into a URI can be challenging:** as there is no commonly accepted marshalling mechanism. E.g. idempotent requests having large amounts of input data cannot be encoded in a URI (“414 - Request-URI too long“).
+- **Not easy to be extended**
+
+### **Designing RESTful services**
+
+To efficiently design RESTful services it best to follow some guidelines:
+
+- Identify resources to be exposed as services
+- Model relationships between resources with hyperlinks
+- Define «nice» URIs to address resources
+- Understand what it means to do GET/POST/PUT/DELETE for each resource (and whether it is allowed or not)
+- Design and document resource representrations
+- Implement and deploy on Web service
+- Test with web browser
+
+![Example REST](img/DesignREST.png )
+
+### **URI design guidelines**
+
+- Prefer nouns to verbs
+
+![URIdesign1](img/URIdesign1.png)
+
+- Keep URIs short
+- Use URI templates to construct and parse parametric URIs
+
+![URIdesign2](img/URIdesign2.png)
+
+- Use URI templates to construct and parse parametric URIs
+
+![URIdesign3](img/URIdesign3.png)
+
+### **What is SOAP?**
 
 Simple Object Access Protocol: is a messaging protocol specification for exchanging structured information. It is based on XML and transported over HTTP.
 
-### How are SOAP messages transported?
+### **How are SOAP messages transported?**
 
 SOAP messages are based on XML and transported over HTTP. The SOAP envelope consists in an optional header with control information, and a body with the payload.
 
-### REST vs SOAP
+### **REST vs SOAP**
 
 - REST is resource-centric, SOAP is message-centric
 - REST is easy, SOAP is complex
