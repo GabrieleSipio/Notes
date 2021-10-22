@@ -26,11 +26,12 @@ So let's start to introduce what a microservice is: micro doesn't mean small. In
 - **Organize services arounf business capabilities:** Usually, organization wich design systems are constrained to produce design wich are copies of the comunication structure of these organization.
 
 ![old structure](img/oldStructure.png)
-with agile, these way of thinking was rearranged in the sense that teams, now, aren't meant to be composed of people that belongs to the same deparment but must be mixed. This is done because, in this way, the interaction with the other services it's way easier especially because, at some point, the teams will have to speak with each other and, this, way its way more efficient.
+
+with agile, these way of thinking was rearranged in the sense that teams, now, aren't meant to be composed of people that belongs to the same deparment but must be mixed. This is done because, in this way, the interaction with the other services it's way easier especially because, at some point, the teams will have to speak with each other and, this, way it's way more efficient.
 
 ![agile structure](img/agileStructure.png)
 
-- **Decentralize data management:** if we want the architecture to be easy to modify and scalable we should want a microservice. This is obtained because eache microservice is managed by one team that is indipendent from the others. To do this, they should take care of the data that they need so we mast let eache service manage its own database choosing *evenutual consistency and conpesation* instead of distributed transactions because they are very complex and, if we can implement them, they are not so efficient. In microservices there are 2 things that aren't that compatible: accessibility (whenever a data is changed it becomes available to everybody) and consistency (if we have one data wich is replicated in 2 database, if the data changes in one database then it should be changed on the other). Its important to underline that eventually in this context means that sooner or later we will have consistency.
+- **Decentralize data management:** if we want the architecture to be easy to modify and scalable we should want a microservice. This is obtained because eache microservice is managed by one team that is indipendent from the others. To do this, they should take care of the data that they need so we mast let eache service manage its own database choosing *evenutual consistency and conpesation* instead of distributed transactions because they are very complex and, if we can implement them, they are not so efficient. In microservices there are 2 things that aren't that compatible: accessibility (whenever a data is changed it becomes available to everybody) and consistency (if we have one data wich is replicated in 2 database, if the data changes in one database then it should be changed on the other). It's important to underline that eventually in this context means that sooner or later we will have consistency.
 
 - **Independently deployable services:** every service must be indipendent from all others, it should be able to start up without any dependencies.
 
@@ -55,7 +56,7 @@ The solution to this whas found in the so-called **caos-monkey** wich is a progr
 - It is difficult to avoid data duplication while keeping microservices isolated.
 - A poor team will always create a poor system
 
-In the end the only motive which should push su in to microservices its only if our application is too complex to manage in a monolith.
+In the end the only motive which should push su in to microservices it's only if our application is too complex to manage in a monolith.
 
 ### **What are "squads" and "tribes" at Spotify?**
 
@@ -312,7 +313,57 @@ The concrete interface specifies the implementation of the abstract interface an
 - one-way (input-only operations, asynchronous), the client sends data to the server without requiring a response;
 - notification (output-only operations, asynchronous), the server sends data to the client without a request before and doesn't wait a response.
 
+## **User Stories**
+
+Userstories deal with one part of the SWE life cycle wich is, actually the first, how we can elicitate reuirement from the user. This is a particularly problematic phase, because it's not always easy to get the requirements that the client want to be satisfied by the application. One of the main reason for this is that the designer of the application speak a completely different language from the client not so much as in idiomatic terms but from a view and background prospective. AS a result to this, frequently, the situation that we face it's like this:
+
+![Difficulties of elicitating the requirements](img/US.png)
+
+Needles to say, when we try to elicitate the requirement, we mus t put particular attention to understand the client. But we also must keep in mind that the requirements will change during the development. Fortunately, in our help, comes Agile and its 12 principles:
+
+1. Our highest priority is to satisfy the customer through **early and continuous delivery of valuable software**.
+2. **Welcome changing requirements** even late in development. Agile processes harness change for the customer's competitive advantage.
+3. **Deliver working software frequently** from a couple of weeks to a couple of months, with a preference to the shorter timescale.
+4. **Business people and developers works together** daily throughout the project.
+5. **Build projects around motivated individuals**.Give them the environment and support they need, and trust them to get the job done.
+6. The most efficient and effective method of conveying information to and within a development team is **face-to-face conversation to conveying information**.
+7. **Working software is the primary measure of progress**
+8. Agile processes promote **sustainable development**. The sponsors, developers, and users should be able to maintain a constant pace indefinitely.
+9. Continuous attention to **technical excellence and good design** enhances agility.
+10. **Simplicity**--the art of maximizing the amount of work not done--is essential.
+11. The best architectures, requirements, and designs emerge from **self-organizing teams**.
+12. At regular intervals, **the team reflects on how to become more effective**, then tunes and adjusts its behavior accordingly.
+
+### **What is a user story (for)?**
+
+User stories, per se, are Agile but they can help us better follow the Agile principles themselves. E.g. there are 3 principles that we should keep in mind:
+
+- **Working software is the primary measure of progress:**
+- **Our highest priority is to satisfy the customer through early and continuous delivery of valuable software**
+- **Simplicity--the art of maximizing the amount of work not done--is essential:**
+
+We need to make sure to organize and track our work in a way that support this goal. We need to make sure that our work is organized and chuncked into units that represent value to the customer and we need a way to sort out what is extremely valuable from what is less important. Most teams finds that the best way to do this is to visualize their work so it is easy to see what *has been* done, what *is being* done and what *will be* done. This can be done via software or with the help of sticky notes, and take the name of **Units of Work** the simple method to rapresent this is to use simple stories that describe what the users world must look like in order to mark a story as complete (User Stories).
+
+Users stories help to better understand the customers' and stakeholders' needs and provide a software that satisfy the requirements. Them also simplify the development and help to provide working software earlier and faster.
+
+Each user story is a chunk of work that represent value for the customer and has this format:
+
+![Difficulties of elicitating the requirements](img/USTemplate.png)
+
+Development efforts driven by stories that represent our understanding of user needs, support Agile principles and fosters good development practices, whereas stories that violates those principles will hinder good development practicies and, therefore, increasing the quelity of our stories will make the rest of our development process more efficient. The stories must be written from the user's point of view and talks about thing form the user's prospective. The latter is very important because we're going to define our progress based on giving the users the ability to do someting valuable with the software that they were not able to do before. In that sense, if we write stories that aren't creating business value for the customer we're explicitly doing work that we said that isn't going to count as progress.
+
+Developers should think about application the way the users think about it, i.e. in terms of the behavior the find valuable. So, they have to build software incrementally, as slices of functionality.
+
+### **What is the priority of a user story?**
+
+Each user story has a priority that helps developers to work first on the main functionality of the software. A low priority value represents the first things needed in the software to start using it. As soon as the priority increases the user stories contain units of works less important, such as optional and advanced feature. The priority is assigned by the stakeholders, so that represent what is more important for them.
+
+### **What is the effort/size of a user story?**
+
+A good user story should not take more than 2 days. Otherwise, it represents an epic and is necessary to split it in simpler stories. An epic is a big user story that has been splitted in smaller ones or a set of user stories that can be grouped in a single functionality. Its development may require more than one sprint but all the user stories in the epic are usually assigned to the same team.
+
 # OLD
+
 ### What is Git/GitHub?
 
 Git is the widely used version control protocol, and GitHub the most popular service that implements git.
@@ -407,47 +458,6 @@ Load testing is a kind of Performance Testing which determines a system's perfor
 #### What is CI?
 
 CI stands for Continuous Integration and is a development practice where developers integrate code into a shared repository frequently, preferably several times a day. Each integration can then be verified by an automated build and automated tests.
-
-
-## User Stories
-
-### NOTES
-
-12 principles of Agile development:
-
-1. Early and continuous delivery software
-2. Welcome changing requirements
-3. Deliver working software frequently
-4. Business people and developers works together
-5. Build projects around motivated individuals
-6. Face-to-face conversation to conveying information
-7. Working software is the primary measure of progress
-8. Sustainable development: peace between sponsors, developers and users.
-9. Technical excellence and good design
-10. Simplicity
-11. Self-organized teams
-12. Periodically reflects on how to become more effective
-
-### What is a user story (for)?
-
-Users stories help to better understand the customers' and stakeholders' needs and provide a software that satisfy the requirements. Them also simplify the development and help to provide working software earlier and faster.
-
-Each user story is a chunk of work that represent value for the customer and has this format: "As a [customer/user/stakeholder/…] I want to … so that … with priority …".
-
-Developers should think about application the way the users think about it, i.e. in terms of the behavior the find valuable. So, they have to build software incrementally, as slices of functionality.
-
-### What is the priority of a user story?
-
-Each user story has a priority that helps developers to work first on the main functionality of the software. A low priority value represents the first things needed in the software to start using it. As soon as the priority increases the user stories contain units of works less important, such as optional and advanced feature. The priority is assigned by the stakeholders, so that represent what is more important for them.
-
-### What is the effort/size of a user story?
-
-A good user story should not take more than 2 days. Otherwise, it represents an epic and is necessary to split it in simpler stories.
-
-### What is an epic?
-
-An epic is a big user story that has been splitted in smaller ones or a set of user stories that can be grouped in a single functionality. Its development may require more than one sprint but all the user stories in the epic are usually assigned to the same team.
-
 
 ## Splitting the Monolith
 
