@@ -1,7 +1,10 @@
 # Advanced Software Engineering
 
+This is a refactoring of the [Advanced-Software-Engineering-master repo](https://github.com/md-cs-student-unipi/ict-infrastructures) with the objective of adding new content to make the life easier for all other students.
+
 Teacher: prof. Antonio Brogi  
 Accademic Year: 2020/21
+
 [Syllabus](Syllabus.pdf)  
 [Oral questions](ASE-oral-questions.pdf) (list only)
 
