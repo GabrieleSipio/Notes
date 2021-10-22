@@ -5,7 +5,7 @@
 ICT Infrastructures - University of Pisa (Italy)
 
 _Since there is only little material on ICT Infrastructures course, this is a recap and summary of classes. The notes are a compilation of the course contents and focus on the topics in accordance with Prof. Antonio Cisternino's OneNote Notebook.  
-It is highly recommended to study with the EMC DELL slides provided under <<_Raccolta contenuto>> which will not be uploaded here for copyright reasons. Each heading correspond to a module. If you find any error please, fork and submit a pull request!_
+This is a refactoring of the [ICT-infrastructure-master repo](https://github.com/md-cs-student-unipi/ict-infrastructures) with the objective of adding new content to make the life easier for all other students.
 
 # Table of contents
 
