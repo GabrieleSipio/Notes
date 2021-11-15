@@ -142,7 +142,15 @@ This is a web-based UI that is supposed to eliminate smells from your applicatio
 
 ![architectural smells](img/Freshsp.png)
 
-This is a Open-source program so it's free to use to refactor microservice-based apps. It's worth noting that μFreshener works on architectural level and not a code level
+This is a Open-source program so it's free to use to refactor microservice-based apps. It's worth noting that μFreshener works on architectural level and not a code level.
+
+## Toolchain for Microservices
+
+Beccause microservices-based application integrate many interacting sevices, they need to select an appropriate runtime enviroment for each microservice an to package each microservice into the selected runtime environment. The idea that in the chain of tools an application is represented by a model (called the TOSA model) an we can exploit it using one of the most powerfull feature that allow us to describe partially our apllication. It's good to notice that this is not the source code is just a model of the applicatio wich could be also incoplete.
+
+![architectural smells](img/TOSCA-Ex.png)
+
+The next step is to actually develop a tool wich has the ability of automatically completing and updating the TOSCA application specifications by discovering and including Docker-based runtime enviroments providing the software support by each microservice. This solves the first of the two problems that we identified before, for the second it's necessary to develop a tool to automate the deployment on top of existing container orchestrators.
 
 ## REST, SOAP/ WS-\*, WSDL
 
