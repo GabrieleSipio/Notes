@@ -195,7 +195,7 @@ There is a _floating floor_, under which all the cabling and the cooling is perf
 
 Drawbacks are density (if we want to go dense this approach fails) and the absence of locality. No one is using this technique today.
 
-![](./assets/crac.png)
+![crac](./assets/crac.png)
 
 #### Hot/Cold aisles
 
